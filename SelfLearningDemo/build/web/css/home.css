@@ -1,0 +1,181 @@
+.home-main-content {
+    margin-top: 30px; /* chừa khoảng cho header */
+    margin-bottom: 10px; /* chừa khoảng cho footer */
+    padding: 20px 40px;
+    background: #f9fafc;
+    min-height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+}
+/* ===== VÙNG GIỚI THIỆU ===== */
+.home-intro-section {
+    text-align: center;
+    padding: 120px 20px;
+}
+
+.home-intro-title {
+    font-size: 2.4em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 60px;
+}
+
+/* ===== CÁC Ô TÍNH NĂNG ===== */
+.home-feature-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.home-feature-box {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    background: #4a90e2;
+    color: #fff;
+    font-size: 1.3em;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.home-feature-box:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
+
+/* Mặt trước (chữ ban đầu) */
+.home-feature-front,
+.home-feature-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+
+/* Mặt trước */
+.home-feature-front {
+    background: #4a90e2;
+}
+
+/* Mặt sau (mô tả) */
+.home-feature-back {
+    background: #357ab7;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+/* Khi hover: chữ cũ trượt lên, mô tả trượt lên thay thế */
+.home-feature-box:hover .home-feature-front {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+.home-feature-box:hover .home-feature-back {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ===== GIAO DIỆN NGƯỜI DÙNG ĐÃ ĐĂNG NHẬP ===== */
+.home-loggedin-section {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding: 60px 40px;
+}
+
+/* Tiêu đề phần */
+.feature-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: left;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Thanh trượt */
+.feature-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* khoảng cách giữa nút và danh sách */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Danh sách thẻ */
+.feature-list {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.6s ease;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Mỗi thẻ */
+.feature-card {
+    flex: 0 0 calc(25% - 15px);
+    height: 180px;
+    background: linear-gradient(145deg, #4a90e2, #357ab7);
+    border-radius: 14px;
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.feature-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 18px rgba(0,0,0,0.25);
+}
+
+.feature-section {
+    margin-bottom: 60px;
+}
+
+/* Nút điều hướng */
+.slide-btn {
+    background: rgba(255,255,255,0.9);
+    border: 2px solid #4a90e2;
+    color: #4a90e2;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.4em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    flex-shrink: 0; /* giữ kích thước cố định */
+}
+
+.slide-btn:hover {
+    background: #4a90e2;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.prev-btn {
+    position: absolute;
+    left: 10px;
+}
+
+.next-btn {
+    position: absolute;
+    right: 10px;
+}

@@ -1,0 +1,146 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Toàn trang */
+body {
+    background: linear-gradient(180deg, #fff8f1, #f7f9ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container chính */
+.login-container {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    padding: 40px 50px;
+    width: 380px;
+    text-align: center;
+}
+
+/* Logo và tiêu đề */
+.logo img {
+    width: 48px;
+    margin-bottom: 10px;
+}
+.logo h2 {
+    font-size: 22px;
+    color: #ff9900;
+    margin-bottom: 10px;
+}
+
+/* Welcome text */
+.welcome-text {
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+/* Form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+.login-form label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+.login-form input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+.login-form input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 4px rgba(74,144,226,0.4);
+}
+
+/* Nút đăng nhập */
+.btn-login {
+    background: #24c66f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.btn-login:hover {
+    background: #1aa15a;
+}
+
+/* Liên kết dưới form */
+.links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-top: 10px;
+}
+.links a {
+    color: #4a90e2;
+    text-decoration: none;
+}
+.links a:hover {
+    text-decoration: underline;
+}
+
+/* Danh sách ứng dụng bên dưới */
+.app-list {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #555;
+}
+.app-list span {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+.app-list span:hover {
+    transform: translateY(-2px);
+    color: #4a90e2;
+    border-color: #4a90e2;
+}
+
+.error-message {
+    color: #ff4d4d; /* đỏ nhẹ, dễ nhìn */
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    background-color: #ffe6e6;
+    border: 1px solid #ff9999;
+    padding: 8px 12px;
+    border-radius: 6px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    animation: shake 0.2s ease-in-out 0s 2;
+}
+
+/* Hiệu ứng rung nhẹ khi hiển thị lỗi */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+}

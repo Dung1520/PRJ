@@ -1,0 +1,98 @@
+/* ===== NAVIGATION MENU ===== */
+.menu-nav {
+    position: fixed;
+    top: 50%; /* đặt giữa theo chiều dọc */
+    transform: translateY(-50%); /* căn giữa */
+    width: 60px; /* chiều rộng menu */
+    background: #f7f9fc;
+    border: 2px solid #e1e8ed;
+    border-radius: 12px;
+    box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    z-index: 50; /* thấp hơn header/footer */
+}
+
+/* ===== MENU LIST ===== */
+.menu-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-item {
+    position: relative;
+}
+
+/* ===== ICON STYLE ===== */
+.menu-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.6em;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.menu-item a:hover {
+    color: #4a90e2;
+}
+
+/* ===== Hiệu ứng trượt chữ ===== */
+.menu-item a::after {
+    content: "";
+    position: absolute;
+    left: 60px;
+    opacity: 0;
+    transform: translateX(-10px);
+    background: #4a90e2;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+    pointer-events: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* ===== Nội dung chữ trượt ===== */
+.menu-item:nth-child(1) a::after {
+    content: "Trang chủ";
+}
+.menu-item:nth-child(2) a::after {
+    content: "Quiz";
+}
+.menu-item:nth-child(3) a::after {
+    content: "Flashcard";
+}
+.menu-item:nth-child(4) a::after {
+    content: "TodoList";
+}
+.menu-item:nth-child(5) a::after {
+    content: "Quản trị";
+}
+
+/* ===== Khi hover thì hiện chữ ===== */
+.menu-item a:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ===== ADMIN TAB ===== */
+.menu-item-admin a {
+    color: #e74c3c;
+}
+
+.menu-item-admin a:hover {
+    color: #c0392b;
+}
