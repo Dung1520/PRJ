@@ -1,0 +1,149 @@
+/* ===== HEADER ===== */
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #fff;
+    padding: 15px 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    box-sizing: border-box;
+
+    z-index: 1000;  
+}
+
+/* Logo */
+.header-logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background: linear-gradient(to right, #6154F7, #C45891, #F5A623);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+.header-logo:hover {
+    transform: scale(1.05);
+}
+
+/* Deadline notice */
+.header-center {
+    flex: 1;
+    text-align: center;
+}
+
+.header-deadline-alert {
+    display: inline-block;
+    background: #ffda44;
+    color: #222;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    animation: pulse 1.8s infinite;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+/* User area */
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-user a {
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.header-user a:hover {
+    color: #ffda44;
+}
+
+/* Nút Sign In */
+.btn-signin {
+    padding: 8px 20px;
+    border: 2px solid #6154F7;
+    border-radius: 20px;
+    color: #6154F7;
+    background: transparent;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-signin:hover {
+    background: #6154F7;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Nút Sign Up */
+.btn-signup {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(90deg, #6154F7, #C45891, #F5A623);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-signup:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.user-name {
+    padding: 8px 20px;
+    border: 2px solid #6154F7;
+    border-radius: 20px;
+    color: #6154F7;
+    background: transparent;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.user-name:hover {
+    background: #6154F7;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-logout {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(90deg, #6154F7, #C45891, #F5A623);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
