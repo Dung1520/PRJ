@@ -4,7 +4,10 @@
     top: 50%; /* đặt giữa theo chiều dọc */
     transform: translateY(-50%); /* căn giữa */
     width: 60px; /* chiều rộng menu */
-    background: #f7f9fc;
+    /* 💎 Hiệu ứng nền mờ trong suốt */
+    background: rgba(255, 255, 255, 0.15); /* nền trắng mờ 15% */
+    backdrop-filter: blur(12px); /* làm mờ phía sau */
+    -webkit-backdrop-filter: blur(12px); /* hỗ trợ Safari */
     border: 2px solid #e1e8ed;
     border-radius: 12px;
     box-shadow: 2px 0 6px rgba(0,0,0,0.1);
@@ -54,7 +57,7 @@
     left: 60px;
     opacity: 0;
     transform: translateX(-10px);
-    background: #4a90e2;
+    background: linear-gradient(to right, #6154F7, #C45891, #F5A623);
     color: #fff;
     padding: 6px 12px;
     border-radius: 6px;

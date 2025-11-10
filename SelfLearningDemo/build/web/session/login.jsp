@@ -12,8 +12,7 @@
                 <img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="Logo">
                 <h2>yourSelf Learning</h2>
             </div>
-
-            <h3 class="welcome-text">Rất vui được gặp lại bạn</h3>
+                
             <% String error = (String) request.getAttribute("error");
            if (error != null) { %>
             <div class="error-message">

@@ -33,7 +33,7 @@
         </div>
         <div class="quiz-main-content">
             <div class="quiz-header">
-        <h2>Quiz của bạn</h2>
+        <h1>Quiz của bạn</h1>
     </div>
 
     <!-- Thanh danh mục -->

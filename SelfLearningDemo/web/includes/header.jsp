@@ -26,13 +26,13 @@
             String role = (String) session.getAttribute("role");
             if (role == null) {
         %>
-            <a href="${pageContext.request.contextPath}/session/register.jsp">Đăng ký</a>
-            <a href="${pageContext.request.contextPath}/session/login.jsp">Đăng nhập</a>
+            <a href="${pageContext.request.contextPath}/session/login.jsp" class="btn-signin">Đăng nhập</a>
+            <a href="${pageContext.request.contextPath}/session/register.jsp" class="btn-signup">Đăng ký</a>
         <%
             } else {
         %>
-            <a href="${pageContext.request.contextPath}/profile.jsp">Tên người dùng</a>
-            <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
+            <a href="${pageContext.request.contextPath}/profile.jsp" class="user-name">Tên người dùng</a>
+            <a href="${pageContext.request.contextPath}/logout" class="btn-logout">Đăng xuất</a>
         <%
             }
         %>
