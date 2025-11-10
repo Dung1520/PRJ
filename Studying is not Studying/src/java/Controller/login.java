@@ -48,7 +48,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         // validate input
         if (userName == null || userName.trim().isEmpty() || password == null || password.trim().isEmpty()) {
             request.setAttribute("error", "Vui lòng nhập email và mật khẩu.");
-            RequestDispatcher rq = request.getRequestDispatcher("/include/login.jsp");
+            RequestDispatcher rq = request.getRequestDispatcher("/session/login.jsp");
             rq.forward(request, response);
             return;
         }
@@ -81,7 +81,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         //nên tạo 1 trang 404 để hiển thị.
         log("Error when processing login", e);
         request.setAttribute("error", "Đã có lỗi xảy ra khi đăng nhập. Vui lòng thử lại sau.");
-        RequestDispatcher rq = request.getRequestDispatcher("/sesion/login.jsp");
+        RequestDispatcher rq = request.getRequestDispatcher("/session/login.jsp");
         rq.forward(request, response);
     }
     

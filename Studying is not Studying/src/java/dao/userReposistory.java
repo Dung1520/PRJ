@@ -127,7 +127,7 @@ public class userReposistory extends DBContext{
     String insertSql = "INSERT INTO [users] (username, email, password) VALUES (?, ?, ?)";
 
     try {
-        // 1 check trùng username/email
+        // check trùng username/email
         try (PreparedStatement check = connection.prepareStatement(checkSql)) {
             check.setString(1, userName);
             check.setString(2, email);
@@ -138,14 +138,14 @@ public class userReposistory extends DBContext{
             }
         }
 
-        // 3 thực hiện insert
+        // insert
         try (PreparedStatement p = connection.prepareStatement(insertSql)) {
             p.setString(1, userName);
             p.setString(2, email);
-            p.setString(3, password); // hoặc dùng 'hashed' nếu hash ở trên
+            p.setString(3, password); 
             int affected = p.executeUpdate();
             if (affected == 0) {
-                return false; // không có hàng nào bị chèn
+                return false; 
             }
         }
  
