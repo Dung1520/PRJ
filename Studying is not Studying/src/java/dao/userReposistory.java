@@ -24,7 +24,7 @@ public class userReposistory extends DBContext{
         String query = "SELECT r.role_name\n" +
                         "FROM users u\n" +
                         "JOIN roles r ON u.role_id = r.role_id\n" +
-                        "WHERE u.id = ?;" ;
+                        "WHERE u.user_id = ?;" ;
         String rolename = null; 
         try {
             PreparedStatement p = connection.prepareStatement(query); 
@@ -46,7 +46,7 @@ public class userReposistory extends DBContext{
     public List<userInformation> getUserByUserNameAndPassword(String userName, String passWord){
         List<userInformation> lst = new ArrayList<>();
         String query = "SELECT * FROM users u\n" +
-                                "WHERE u.userName = ? AND u.password = ?;";
+                                "WHERE u.username = ? AND u.password = ?;";
         try {
                    PreparedStatement prestate = connection.prepareStatement(query);
                    prestate.setString(1, userName); 
@@ -54,9 +54,9 @@ public class userReposistory extends DBContext{
                    ResultSet re = prestate.executeQuery(); 
                    while(re.next()){ 
                        userInformation user = new userInformation(
-                            re.getInt("role_id")==0?"admin":"user",
+                            re.getInt("role_id")==1?"admin":"user",
                             re.getInt("id"),
-                            re.getString("email"),
+                            re.getString("email"), 
                             re.getString("password"),
                             re.getString("username"));
                        lst.add(user); 
@@ -69,6 +69,11 @@ public class userReposistory extends DBContext{
                 }
                 return lst;
     }
+    public static void main(String[] args) {
+        userReposistory u = new userReposistory();
+        List<userInformation> lst = u.getUserByUserNameAndPassword("namnguyen", "abcd1234"); 
+        System.out.println(lst);
+    }
     
     //getAll
         //getUser
@@ -80,9 +85,9 @@ public class userReposistory extends DBContext{
                    ResultSet re = prestate.executeQuery(); 
                    while(re.next()){ 
                        userInformation user = new userInformation(
-                            re.getInt("role_id")==0?"admin":"user",
-                            re.getInt("id"),
-                            re.getString("email"),
+                            re.getInt("role_id")==1?"admin":"user",
+                            re.getInt("user_id"),
+                            null, // email không có trong schema
                             re.getString("password"),
                             re.getString("username"));
                        lst.add(user); 
@@ -98,16 +103,16 @@ public class userReposistory extends DBContext{
     
     //dùng để pre-fill form 
     public List <userInformation> getUserById(int id) {
-        String sql = "SELECT * FROM users WHERE id = ?";
+        String sql = "SELECT * FROM users WHERE user_id = ?";
         List <userInformation> lst = new ArrayList<>(); 
         try (PreparedStatement p = connection.prepareStatement(sql)) {
             p.setInt(1, id);
             try (ResultSet re = p.executeQuery()) {
                 if (re.next()) {
                     lst.add(new userInformation(
-                            re.getInt("role_id")==0?"admin":"user",
-                            re.getInt("id"),
-                            re.getString("email"),
+                            re.getInt("role_id")==1?"admin":"user",
+                            re.getInt("user_id"),
+                            null, // email không có trong schema
                             re.getString("password"),
                             re.getString("username")));
                 }
@@ -122,15 +127,14 @@ public class userReposistory extends DBContext{
     }    
     
     //crete user 
-   public boolean createUser(String userName, String email, String password) {
-    String checkSql = "SELECT COUNT(*) FROM users WHERE username = ? OR email = ?";
-    String insertSql = "INSERT INTO [users] (username, email, password) VALUES (?, ?, ?)";
+   public boolean createUser(String userName, String password) {
+    String checkSql = "SELECT COUNT(*) FROM users WHERE username = ?";
+    String insertSql = "INSERT INTO users (username, password, role_id) VALUES (?, ?, 2)";
 
     try {
-        // check trùng username/email
+        // check trùng username
         try (PreparedStatement check = connection.prepareStatement(checkSql)) {
             check.setString(1, userName);
-            check.setString(2, email);
             try (ResultSet rs = check.executeQuery()) {
                 if (rs.next() && rs.getInt(1) > 0) {
                     return false; // đã tồn tại
@@ -141,8 +145,7 @@ public class userReposistory extends DBContext{
         // insert
         try (PreparedStatement p = connection.prepareStatement(insertSql)) {
             p.setString(1, userName);
-            p.setString(2, email);
-            p.setString(3, password); 
+            p.setString(2, password); 
             int affected = p.executeUpdate();
             if (affected == 0) {
                 return false; 
@@ -156,20 +159,16 @@ public class userReposistory extends DBContext{
     } finally {
         closeConnection();
     }
-}   public static void main(String[] args) {
-        userReposistory res = new userReposistory(); 
-        boolean check = res.createUser("sonnhhe190862", "nguyenhieuson6@gmail.com", "Sonno112233");
-        System.out.println(check);
-    }
+}  
 
 
     //update user -- Bắt buộc phải để "selected" trong form update user để đầy đủ các thông tin trước. 
     public boolean updateUser(int id, String username, String email, String password, int role_id) {
-    String sql = "UPDATE users SET username = ?, email = ?, password = ?";
+    String sql = "UPDATE users SET username = ?, password = ? WHERE user_id = ?";
     try (PreparedStatement p = connection.prepareStatement(sql)) {
         p.setString(1, username);
-        p.setString(2, email);
-        p.setString(3, password);
+        p.setString(2, password);
+        p.setInt(3, id);
 
         int rows = p.executeUpdate(); // = Update = số rows affected
         return rows > 0; // true nếu có ít nhất 1 dòng được cập nhật
@@ -183,7 +182,7 @@ public class userReposistory extends DBContext{
         
     //delete user
     public boolean deleteUser(int id) {
-    String sql = "DELETE FROM users WHERE id = ?";
+    String sql = "DELETE FROM users WHERE user_id = ?";
     try (PreparedStatement p = connection.prepareStatement(sql)) {
         p.setInt(1, id);
         int rows = p.executeUpdate();

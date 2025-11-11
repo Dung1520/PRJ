@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package Controller;
 
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
@@ -21,7 +21,7 @@ import utils.Validator;
  * @author ADMIN
  */
 @WebServlet(name="register", urlPatterns={"/register"})
-public class signIn extends HttpServlet {
+public class Register extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,31 +35,41 @@ public class signIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String username = request.getParameter("username");
-        String email = request.getParameter("email");
         String password = request.getParameter("password");
         String confirm = request.getParameter("confirm");
         
-        String errors = Validator.validateRegistration(username, email, password, confirm);
-        
-        if(!password.equals(confirm)){
-            errors = "vui lòng nhập đúng mật khẩu!";
+        // Validate input
+        StringBuilder errors = new StringBuilder();
+        if (username == null || username.trim().isEmpty()) {
+            errors.append("Username là bắt buộc.\n");
+        } else if (!utils.Validator.isValidUsername(username)) {
+            errors.append("Username không hợp lệ (3-50 ký tự: chữ, số, '_' hoặc '.').\n");
         }
         
-        if (errors.isEmpty()) {
+        if (password == null || password.isEmpty()) {
+            errors.append("Password là bắt buộc.\n");
+        } else if (!utils.Validator.isValidPassword(password)) {
+            errors.append("Password phải có ít nhất 8 ký tự và chứa cả chữ và số.\n");
+        }
+        
+        if (!password.equals(confirm)) {
+            errors.append("Password và Confirm password không khớp.\n");
+        }
+        
+        if (errors.length() == 0) {
             userManager um = new userManager();
-            boolean created = um.createUser(username.trim(), email.trim(), password);
+            boolean created = um.createUser(username.trim(), null, password);
             if (created) {
                 response.sendRedirect(request.getContextPath() + "/login");
                 return;
             } else {
-                errors="Không thể tạo tài khoản. Username hoặc Email có thể đã tồn tại.";
+                errors.append("Không thể tạo tài khoản. Username có thể đã tồn tại.");
             }
         }
         // forward lại form nếu có error
-        request.setAttribute("error", errors); //list các error - yêu cầu in ra với từng trường nhập liệu trong form
+        request.setAttribute("error", errors.toString());
         request.setAttribute("username", username);
-        request.setAttribute("email", email);
-        RequestDispatcher rd = request.getRequestDispatcher("/session/register.jsp");//trờ  về form kèm error
+        RequestDispatcher rd = request.getRequestDispatcher("/session/register.jsp");
         rd.forward(request, response);
     }
 

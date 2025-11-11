@@ -32,7 +32,7 @@ public class userManager {
     
     // tạo user - đầy đủ thông tin, id đã được sql thêm tự động
     public boolean createUser(String username, String email, String password) {
-        return use.createUser(username, email, password);
+        return use.createUser(username, password);
     }
     
     // list all user - không điều kiện, trả về 1 list
